@@ -136,8 +136,8 @@ class TestCompleteTrainingPipeline:
         # Step 6: Test text generation
         generator = TextGenerator(model, tokenizer)
         
-        # Test different generation strategies
-        test_prompts = ["Language", "The model", "Neural networks"]
+        # Test different generation strategies (use lowercase to match training text)
+        test_prompts = ["language", "the model", "neural networks"]
         
         for prompt in test_prompts:
             # Greedy generation (deterministic)
@@ -304,8 +304,7 @@ class TestModelPersistence:
             new_decoded = new_tokenizer.decode(new_encoded)
             assert original_decoded == new_decoded == test_text
 
-class Te
-stDifferentModelConfigurations:
+class TestDifferentModelConfigurations:
     """Test various model configurations and architectures."""
     
     @pytest.mark.parametrize("config", [
@@ -550,8 +549,7 @@ class TestPerformanceBenchmarks:
             
             # Performance assertion
             assert generation_time < 10.0, f"{strategy_name} generation too slow: {generation_time:.3f}s"
-class
- TestRequirementsValidation:
+class TestRequirementsValidation:
     """Validate that all specified requirements are met through automated tests."""
     
     def test_requirement_1_character_level_tokenization(self):

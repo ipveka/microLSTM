@@ -152,10 +152,10 @@ class TestDataPreparation:
     
     def test_prepare_data_invalid_sequence_length(self):
         """Test data preparation with invalid sequence length."""
-        with pytest.raises(TrainingError, match="sequence_length must be positive"):
+        with pytest.raises(TrainingError, match="sequence_length must be a positive integer"):
             self.trainer.prepare_data("hello", sequence_length=0)
         
-        with pytest.raises(TrainingError, match="sequence_length must be positive"):
+        with pytest.raises(TrainingError, match="sequence_length must be a positive integer"):
             self.trainer.prepare_data("hello", sequence_length=-1)
     
     def test_prepare_data_text_too_short(self):
@@ -165,7 +165,7 @@ class TestDataPreparation:
     
     def test_prepare_data_invalid_batch_size(self):
         """Test data preparation with invalid batch size."""
-        with pytest.raises(TrainingError, match="batch_size must be positive"):
+        with pytest.raises(TrainingError, match="batch_size must be a positive integer"):
             self.trainer.prepare_data("hello world", sequence_length=3, batch_size=0)
     
     def test_prepare_data_invalid_validation_split(self):
@@ -274,18 +274,18 @@ class TestTrainingLoop:
     
     def test_train_invalid_epochs(self):
         """Test training with invalid epoch count."""
-        with pytest.raises(TrainingError, match="epochs must be positive"):
+        with pytest.raises(TrainingError, match="epochs must be a positive integer"):
             self.trainer.train(self.data_loader, epochs=0)
         
-        with pytest.raises(TrainingError, match="epochs must be positive"):
+        with pytest.raises(TrainingError, match="epochs must be a positive integer"):
             self.trainer.train(self.data_loader, epochs=-1)
     
     def test_train_invalid_learning_rate(self):
         """Test training with invalid learning rate."""
-        with pytest.raises(TrainingError, match="learning_rate must be positive"):
+        with pytest.raises(TrainingError, match="learning_rate must be a positive number"):
             self.trainer.train(self.data_loader, epochs=1, learning_rate=0)
         
-        with pytest.raises(TrainingError, match="learning_rate must be positive"):
+        with pytest.raises(TrainingError, match="learning_rate must be a positive number"):
             self.trainer.train(self.data_loader, epochs=1, learning_rate=-0.01)
     
     def test_train_invalid_optimizer_type(self):

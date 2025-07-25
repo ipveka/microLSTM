@@ -1494,16 +1494,21 @@ class TrainingVisualizer:
 
 
 # Utility functions for easy access
-def inspect_model(model: MicroLM, detailed: bool = True) -> None:
+def inspect_model(model: MicroLM, detailed: bool = True) -> Dict[str, Any]:
     """
     Quick model inspection utility.
     
     Args:
         model (MicroLM): Model to inspect
         detailed (bool): Whether to show detailed analysis
+        
+    Returns:
+        Dict[str, Any]: Model inspection results
     """
     inspector = ModelInspector(model)
-    inspector.print_model_summary(detailed=detailed)
+    if detailed:
+        inspector.print_model_summary(detailed=detailed)
+    return inspector.get_architecture_summary()
 
 
 def visualize_training(training_history: Dict[str, List[float]], 

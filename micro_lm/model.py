@@ -51,6 +51,27 @@ class MicroLM(nn.Module):
         num_layers: int,
         dropout: float = 0.2
     ):
+        """
+        Initialize the MicroLM language model.
+        
+        Creates an LSTM-based character-level language model with the specified
+        architecture parameters. The model consists of an embedding layer,
+        LSTM layers, and an output projection layer.
+        
+        Args:
+            vocab_size (int): Size of the character vocabulary
+            embedding_dim (int): Dimension of character embeddings
+            hidden_dim (int): Hidden dimension of LSTM layers
+            num_layers (int): Number of LSTM layers to stack
+            dropout (float): Dropout probability for regularization (default: 0.2)
+            
+        Raises:
+            ModelConfigurationError: If any parameter is invalid
+            
+        Example:
+            >>> model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+            >>> print(f"Model has {sum(p.numel() for p in model.parameters()):,} parameters")
+        """
         super(MicroLM, self).__init__()
         
         # Store model configuration for inspection

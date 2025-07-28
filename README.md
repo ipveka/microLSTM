@@ -96,6 +96,35 @@ This project uses **LSTM** (Long Short-Term Memory) architecture. Here's how it 
 - **Data hungry**: Needs large amounts of training data
 - **Computational cost**: Requires more resources for training
 
+### How LSTM Works (Simple Explanation)
+
+**LSTM = Long Short-Term Memory**
+
+Think of LSTM as a smart memory system that reads text one character at a time:
+
+```
+Input: "Hello world"
+Step 1: Read 'H' → Remember: "I've seen H"
+Step 2: Read 'e' → Remember: "I've seen He" 
+Step 3: Read 'l' → Remember: "I've seen Hel"
+...and so on
+```
+
+**Key Components:**
+1. **Cell State** (Long-term memory): Stores important information
+2. **Hidden State** (Short-term memory): Current context
+3. **Gates** (Smart filters): Decide what to remember/forget
+
+**The Magic:**
+- **Forget Gate**: "Should I forget old information?"
+- **Input Gate**: "What new information should I store?"
+- **Output Gate**: "What should I output based on what I know?"
+
+**Why it works for language:**
+- Remembers context: "The cat sat on the ___" → likely "mat"
+- Handles grammar: Knows "cats" needs plural verbs
+- Learns patterns: Common word sequences and structures
+
 ### Why LSTM for Learning?
 
 This project uses LSTM because it's:
@@ -111,14 +140,6 @@ Run the setup guide for personalized recommendations:
 ```bash
 python setup/setup_guide.py
 ```
-
-**Quick reference:**
-
-| Size | Parameters | Memory | Use Case |
-|------|------------|--------|----------|
-| Nano | ~2K | 50MB | Learning/Testing |
-| Small | ~35K | 200MB | Prototyping |
-| Large | ~600K | 1GB | Research/Quality |
 
 ## 🔧 Core Components
 
@@ -176,7 +197,3 @@ text = generator.generate("Hello", length=50, temperature=0.8)
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
-
-**Happy Learning!** 🚀
-
-For questions and contributions, visit our [GitHub repository](https://github.com/your-repo/micro-lm).

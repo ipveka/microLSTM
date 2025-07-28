@@ -31,6 +31,17 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+### Configuration Guide
+
+Before diving into training, check out our comprehensive setup guide to choose the right model configuration for your system and use case:
+
+```bash
+# Run the interactive setup guide
+python setup/setup_guide.py
+```
+
+This will analyze your system capabilities and recommend optimal model configurations based on your available memory, processing power, and intended use case.
+
 ### Basic Usage
 
 ```python
@@ -61,6 +72,46 @@ generator = TextGenerator(model, tokenizer)
 generated_text = generator.generate("Hello", length=100, temperature=0.8)
 print(f"Generated: {generated_text}")
 ```
+
+## � CProject Structure
+
+```
+micro-lm/
+├── micro_lm/              # Core package
+│   ├── __init__.py        # Package exports
+│   ├── tokenizer.py       # Character tokenization
+│   ├── model.py           # LSTM language model
+│   ├── trainer.py         # Training utilities
+│   ├── generator.py       # Text generation
+│   └── inspection.py      # Model analysis tools
+├── setup/                 # Configuration and setup
+│   └── setup_guide.py     # Interactive configuration guide
+├── examples/              # Usage demonstrations
+│   ├── training_demo.py   # Complete training example
+│   ├── text_generation_demo.py  # Generation examples
+│   └── model_inspection_demo.py # Model analysis demo
+├── tests/                 # Test suite
+├── setup.py              # Package installation
+├── requirements.txt      # Dependencies
+└── README.md            # This file
+```
+
+## 🎮 Examples and Demos
+
+Explore the `examples/` directory for comprehensive demonstrations:
+
+```bash
+# Complete training workflow
+python examples/training_demo.py
+
+# Text generation techniques
+python examples/text_generation_demo.py
+
+# Model analysis and inspection
+python examples/model_inspection_demo.py
+```
+
+Each example includes detailed comments explaining the concepts and best practices.
 
 ## 📚 Core Components
 
@@ -197,28 +248,38 @@ results = generator.generate_batch(prompts, length=30, temperature=0.8)
 
 ## ⚙️ Configuration Options
 
-### Model Architecture
+### Choosing the Right Configuration
+
+For detailed guidance on selecting model configurations, run our interactive setup guide:
+
+```bash
+python setup/setup_guide.py
+```
+
+The guide will analyze your system and recommend configurations from nano (ultra-fast) to xlarge (research-grade).
+
+### Model Architecture Examples
 
 ```python
-# Nano model (fast training, basic quality)
+# Nano model (ultra-minimal, ~2K parameters)
 model = MicroLM(
     vocab_size=tokenizer.vocab_size(),
-    embedding_dim=32,
-    hidden_dim=64,
+    embedding_dim=16,
+    hidden_dim=32,
     num_layers=1,
     dropout=0.1
 )
 
-# Standard model (balanced performance)
+# Small model (balanced, ~35K parameters)
 model = MicroLM(
     vocab_size=tokenizer.vocab_size(),
-    embedding_dim=128,
-    hidden_dim=256,
+    embedding_dim=64,
+    hidden_dim=128,
     num_layers=2,
     dropout=0.2
 )
 
-# Large model (better quality, slower training)
+# Large model (high quality, ~600K parameters)
 model = MicroLM(
     vocab_size=tokenizer.vocab_size(),
     embedding_dim=256,
@@ -227,6 +288,12 @@ model = MicroLM(
     dropout=0.3
 )
 ```
+
+**Configuration Selection Criteria:**
+- **System Memory**: Larger models need more RAM
+- **Training Time**: Bigger models train slower but produce better results
+- **Use Case**: Research vs. prototyping vs. production
+- **Data Size**: Larger models need more training data
 
 ### Training Parameters
 
@@ -594,10 +661,10 @@ pip install pytest pytest-cov black flake8
 pytest tests/
 
 # Format code
-black micro_lm/ examples/ tests/
+black micro_lm/ examples/ setup/ tests/
 
 # Check code style
-flake8 micro_lm/ examples/ tests/
+flake8 micro_lm/ examples/ setup/ tests/
 ```
 
 ## 📄 License

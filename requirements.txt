@@ -2,6 +2,10 @@
 torch>=2.0.0
 numpy>=1.21.0
 
+# Data loading dependencies
+datasets>=2.0.0    # For downloading datasets from Hugging Face
+requests>=2.25.0   # For downloading files
+
 # Testing dependencies
 pytest>=7.0.0
 pytest-cov>=4.0.0
@@ -11,3 +15,4 @@ matplotlib>=3.5.0  # For visualization utilities
 seaborn>=0.11.0    # For enhanced statistical visualizations
 scipy>=1.7.0       # For advanced statistical analysis
 tqdm>=4.64.0       # For progress bars during training
+psutil>=5.8.0      # For system information in setup guide

@@ -1,5 +1,5 @@
 """
-Model trainer with progress tracking for the Micro Language Model.
+Model trainer with progress tracking for MicroLSTM.
 
 This module provides the ModelTrainer class that handles the complete training
 process for the character-level language model. It includes loss calculation,
@@ -27,7 +27,7 @@ from .exceptions import TrainingError, ModelConfigurationError, FileOperationErr
 
 class ModelTrainer:
     """
-    Comprehensive trainer for the Micro Language Model with progress tracking.
+    Comprehensive trainer for MicroLSTM with progress tracking.
     
     This class handles the complete training pipeline including:
     - Loss calculation using CrossEntropyLoss

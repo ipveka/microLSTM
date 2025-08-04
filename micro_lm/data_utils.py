@@ -1,5 +1,5 @@
 """
-Data preparation and batching utilities for the Micro Language Model.
+Data preparation and batching utilities for MicroLSTM.
 
 This module provides functions to convert raw text into training sequences suitable
 for language model training. It implements a sliding window approach to generate

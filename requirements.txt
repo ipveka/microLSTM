@@ -1,4 +1,4 @@
-# Core dependencies for Micro Language Model
+# Core dependencies for MicroLSTM
 torch>=2.0.0
 numpy>=1.21.0
 

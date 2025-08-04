@@ -1,5 +1,5 @@
 """
-Example scripts and demonstrations for Micro Language Model.
+Example scripts and demonstrations for MicroLSTM.
 
 Contains training examples, generation demos, and tutorials.
 """

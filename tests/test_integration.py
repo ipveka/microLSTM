@@ -1,5 +1,5 @@
 """
-Integration tests and end-to-end validation for the Micro Language Model.
+Integration tests and end-to-end validation for MicroLSTM.
 
 This module contains comprehensive integration tests that verify the complete
 functionality of the language model system, including:
@@ -799,7 +799,7 @@ class TestRequirementsValidation:
         
         # Complete workflow that exercises all requirements
         training_text = """
-        This comprehensive test validates all requirements of the Micro Language Model.
+        This comprehensive test validates all requirements of MicroLSTM.
         The system should handle character-level tokenization, provide extensive
         documentation, support training on text data, enable text generation with
         prompts, offer a simple training interface, and provide model inspection

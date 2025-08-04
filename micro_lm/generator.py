@@ -1,5 +1,5 @@
 """
-Text generation module for the Micro Language Model.
+Text generation module for MicroLSTM.
 
 This module provides the TextGenerator class that handles text generation using
 trained language models. It supports multiple sampling strategies including
@@ -21,7 +21,7 @@ from .exceptions import GenerationError, ModelConfigurationError, CudaError
 
 class TextGenerator:
     """
-    Text generator for the Micro Language Model with multiple sampling strategies.
+    Text generator for MicroLSTM with multiple sampling strategies.
     
     This class provides text generation capabilities using trained language models.
     It supports different sampling strategies to control the creativity and

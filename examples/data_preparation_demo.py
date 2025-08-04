@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Data Preparation Demo for Micro Language Model
+Data Preparation Demo for MicroLSTM
 
 This script demonstrates comprehensive data preparation techniques for training
 character-level language models. It covers data loading, cleaning, preprocessing,
@@ -755,7 +755,7 @@ def main():
     """
     Main function demonstrating comprehensive data preparation techniques.
     """
-    print("MICRO LANGUAGE MODEL - DATA PREPARATION DEMO")
+    print("MICROLSTM - DATA PREPARATION DEMO")
     print("="*80)
     print("This demo covers comprehensive data preparation techniques for")
     print("character-level language model training, from raw text to training-ready data.")

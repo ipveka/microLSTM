@@ -2,7 +2,7 @@
 Tests for model inspection and visualization utilities.
 
 This module tests the comprehensive inspection and visualization tools
-for the Micro Language Model, ensuring they work correctly and provide
+for MicroLSTM, ensuring they work correctly and provide
 accurate analysis of model architecture, parameters, and training progress.
 """
 
@@ -218,7 +218,7 @@ class TestModelInspector:
         inspector.print_model_summary(detailed=False)
         captured = capsys.readouterr()
         
-        assert "MICRO LANGUAGE MODEL - ARCHITECTURE SUMMARY" in captured.out
+        assert "MICROLSTM - ARCHITECTURE SUMMARY" in captured.out
         assert "Model Configuration:" in captured.out
         assert "Parameter Analysis:" in captured.out
         assert "Memory Usage Estimates:" in captured.out
@@ -594,7 +594,7 @@ class TestUtilityFunctions:
         # Test basic inspection
         inspect_model(sample_model, detailed=False)
         captured = capsys.readouterr()
-        assert "MICRO LANGUAGE MODEL - ARCHITECTURE SUMMARY" in captured.out
+        assert "MICROLSTM - ARCHITECTURE SUMMARY" in captured.out
         
         # Test detailed inspection
         inspect_model(sample_model, detailed=True)

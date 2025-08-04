@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Comprehensive Training Demo for Micro Language Model
+Comprehensive Training Demo for MicroLSTM
 
-This script demonstrates the complete training pipeline for the Micro Language Model,
+This script demonstrates the complete training pipeline for MicroLSTM,
 from data preparation through model training to evaluation. It serves as both a
 working example and an educational tutorial showing how to train character-level
 language models from scratch.
@@ -523,7 +523,7 @@ def main():
     language model, from data preparation through model training to text generation.
     It serves as both a working example and an educational tutorial.
     """
-    print("MICRO LANGUAGE MODEL - COMPREHENSIVE TRAINING DEMO")
+    print("MICROLSTM - COMPREHENSIVE TRAINING DEMO")
     print("="*80)
     print("This demo walks through the complete process of training a character-level")
     print("language model, providing detailed explanations at each step.")

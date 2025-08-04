@@ -1,5 +1,5 @@
 """
-Custom exception classes for the Micro Language Model.
+Custom exception classes for MicroLSTM.
 
 This module defines custom exception classes that provide clear, specific error
 messages for different types of failures that can occur during model training,
@@ -15,9 +15,9 @@ The exception hierarchy follows Python best practices:
 
 class ModelError(Exception):
     """
-    Base exception class for all Micro Language Model related errors.
+    Base exception class for all MicroLSTM related errors.
     
-    This is the parent class for all custom exceptions in the micro_lm package.
+    This is the parent class for all custom exceptions in the micro_lstm package.
     It provides a consistent interface and allows users to catch all model-related
     errors with a single exception type if needed.
     

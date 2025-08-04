@@ -3,7 +3,7 @@
 Model Inspection and Visualization Demo
 
 This script demonstrates the comprehensive model inspection and visualization
-utilities provided by the Micro Language Model package. It shows how to:
+utilities provided by the MicroLSTM package. It shows how to:
 
 1. Analyze model architecture and parameters
 2. Visualize parameter distributions and health
@@ -380,7 +380,7 @@ def demonstrate_utility_functions(model, training_history, save_dir):
 
 def main():
     """Main demonstration function."""
-    print("MICRO LANGUAGE MODEL - INSPECTION UTILITIES DEMO")
+    print("MICROLSTM - INSPECTION UTILITIES DEMO")
     print("="*80)
     print("This demo showcases the comprehensive model inspection and")
     print("visualization utilities for understanding neural language models.")

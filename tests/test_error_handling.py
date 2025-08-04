@@ -1,5 +1,5 @@
 """
-Comprehensive tests for error handling and validation in the Micro Language Model.
+Comprehensive tests for error handling and validation in MicroLSTM.
 
 This test module verifies that all custom exceptions are raised correctly
 under various error conditions, and that error messages provide helpful

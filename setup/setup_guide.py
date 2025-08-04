@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Model Configuration Examples for Micro Language Model
+Model Configuration Examples for MicroLSTM
 
 This script demonstrates different model configurations for various use cases,
 showing how to balance model capacity, training time, and resource requirements.
@@ -630,7 +630,7 @@ def save_configuration_guide():
     configurations = define_model_configurations()
     
     guide = {
-        'title': 'Micro Language Model Configuration Guide',
+        'title': 'MicroLSTM Configuration Guide',
         'description': 'Comprehensive guide to model configurations for different use cases',
         'configurations': configurations,
         'selection_criteria': {
@@ -661,7 +661,7 @@ def save_configuration_guide():
     # Also create a markdown version
     md_file = Path("CONFIGURATION_GUIDE.md")
     with open(md_file, 'w') as f:
-        f.write("# Micro Language Model Configuration Guide\n\n")
+        f.write("# MicroLSTM Configuration Guide\n\n")
         f.write("This guide helps you choose the right model configuration for your needs.\n\n")
         
         f.write("## Available Configurations\n\n")
@@ -693,7 +693,7 @@ def main():
     """
     Main function demonstrating model configuration options and recommendations.
     """
-    print("MICRO LANGUAGE MODEL - CONFIGURATION EXAMPLES")
+    print("MICROLSTM - CONFIGURATION EXAMPLES")
     print("="*80)
     print("This demo helps you understand and choose the right model configuration")
     print("for your specific needs, system capabilities, and use cases.")

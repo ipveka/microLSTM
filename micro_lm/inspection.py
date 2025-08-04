@@ -1,5 +1,5 @@
 """
-Model inspection and visualization utilities for the Micro Language Model.
+Model inspection and visualization utilities for MicroLSTM.
 
 This module provides comprehensive tools for analyzing and visualizing the
 language model's architecture, parameters, training progress, and internal
@@ -421,7 +421,7 @@ class ModelInspector:
         summary = self.get_architecture_summary()
         
         print("=" * 80)
-        print("MICRO LANGUAGE MODEL - ARCHITECTURE SUMMARY")
+        print("MICROLSTM - ARCHITECTURE SUMMARY")
         print("=" * 80)
         
         # Basic information

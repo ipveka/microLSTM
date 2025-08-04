@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Interactive Text Generation Demo for Micro Language Model
+Interactive Text Generation Demo for MicroLSTM
 
 This script provides a comprehensive demonstration of text generation capabilities
-using the Micro Language Model. It showcases different sampling strategies,
+using MicroLSTM. It showcases different sampling strategies,
 interactive generation modes, and advanced generation techniques.
 
 Key Features Demonstrated:
@@ -575,9 +575,9 @@ def main():
     This function provides a comprehensive tour of text generation capabilities,
     from basic sampling strategies to advanced interactive features.
     """
-    print("MICRO LANGUAGE MODEL - TEXT GENERATION DEMO")
+    print("MICROLSTM - TEXT GENERATION DEMO")
     print("="*80)
-    print("This demo showcases the text generation capabilities of the Micro Language Model.")
+    print("This demo showcases the text generation capabilities of MicroLSTM.")
     print("You'll explore different sampling strategies, interactive generation, and advanced features.")
     print("="*80)
     

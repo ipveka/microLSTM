@@ -1,5 +1,5 @@
 """
-Micro Language Model - A simple educational language model implementation.
+MicroLSTM - A simple educational LSTM language model implementation.
 
 This package provides a character-level LSTM language model designed for
 learning purposes, with extensive documentation and clear code structure.

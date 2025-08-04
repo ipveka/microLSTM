@@ -1,5 +1,5 @@
 """
-Character-level tokenizer for the Micro Language Model.
+Character-level tokenizer for MicroLSTM.
 
 This module provides a simple character-level tokenization system that converts
 text into numerical indices and back. The tokenizer builds a vocabulary from

@@ -1,5 +1,5 @@
 """
-Setup script for Micro Language Model package.
+Setup script for MicroLSTM package.
 """
 
 from setuptools import setup, find_packages
@@ -8,13 +8,13 @@ with open("requirements.txt") as f:
     requirements = [line.strip() for line in f if line.strip() and not line.startswith("#")]
 
 setup(
-    name="micro-lm",
+    name="micro-lstm",
     version="0.1.0",
-    description="A simple educational language model implementation",
+    description="A simple educational LSTM language model implementation",
     packages=find_packages(),
     install_requires=requirements,
     python_requires=">=3.8",
-    author="Micro LM Project",
+    author="MicroLSTM Project",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Education",

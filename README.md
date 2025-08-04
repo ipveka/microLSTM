@@ -1,4 +1,4 @@
-# Micro Language Model 🧠
+# MicroLSTM 🧠
 
 A simple, educational character-level LSTM language model for learning neural language modeling fundamentals.
 
@@ -14,7 +14,7 @@ Perfect for learning, experimentation, and understanding how language models wor
 
 ```bash
 git clone <repository-url>
-cd micro-lm
+cd micro-lstm
 pip install -r requirements.txt
 pip install -e .
 ```
@@ -51,8 +51,8 @@ print(f"Generated: {generated_text}")
 ## 📁 Project Structure
 
 ```
-micro-lm/
-├── micro_lm/              # Core package (tokenizer, model, trainer, generator)
+micro-lstm/
+├── micro_lstm/              # Core package (tokenizer, model, trainer, generator)
 ├── setup/                 # Configuration guide
 ├── examples/              # Usage demos
 └── tests/                 # Test suite

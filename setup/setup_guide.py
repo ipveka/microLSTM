@@ -29,7 +29,7 @@ import os
 from typing import Dict, List, Any, Tuple
 
 # Import Micro LM components
-from micro_lm import (
+from micro_lstm import (
     CharacterTokenizer, MicroLM, ModelTrainer, TextGenerator,
     ModelConfigurationError
 )

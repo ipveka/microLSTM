@@ -20,6 +20,7 @@ from .tokenizer import CharacterTokenizer
 from .model import MicroLM
 from .trainer import ModelTrainer  
 from .generator import TextGenerator
+from .data_loader import DataLoader
 from .inspection import ModelInspector, TrainingVisualizer, inspect_model, visualize_training, analyze_parameters
 from .exceptions import (
     ModelError, TrainingError, GenerationError, TokenizationError,
@@ -31,6 +32,7 @@ __all__ = [
     "MicroLM", 
     "ModelTrainer",
     "TextGenerator",
+    "DataLoader",
     "ModelInspector",
     "TrainingVisualizer",
     "inspect_model",

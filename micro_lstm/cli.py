@@ -14,13 +14,13 @@ from typing import Optional, Dict, Any
 
 try:
     from . import (
-        CharacterTokenizer, MicroLM, ModelTrainer, TextGenerator,
+        CharacterTokenizer, MicroLSTM, ModelTrainer, TextGenerator,
         ModelConfigurationError, TrainingError, GenerationError
     )
 except ImportError:
     # For direct script execution
     from micro_lstm import (
-        CharacterTokenizer, MicroLM, ModelTrainer, TextGenerator,
+        CharacterTokenizer, MicroLSTM, ModelTrainer, TextGenerator,
         ModelConfigurationError, TrainingError, GenerationError
     )
 
@@ -100,7 +100,7 @@ def train_model(args: argparse.Namespace) -> None:
     
     # Create model
     print("🧠 Creating model...")
-    model = MicroLM(
+            model = MicroLSTM(
         vocab_size=tokenizer.vocab_size(),
         embedding_dim=args.embedding_dim,
         hidden_dim=args.hidden_dim,

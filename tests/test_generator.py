@@ -11,7 +11,7 @@ This module contains focused tests for the TextGenerator class, covering:
 import pytest
 import torch
 from micro_lstm.generator import TextGenerator
-from micro_lstm.model import MicroLM
+from micro_lstm.model import MicroLSTM
 from micro_lstm.tokenizer import CharacterTokenizer
 from micro_lstm.exceptions import ModelConfigurationError, GenerationError, TokenizationError
 
@@ -22,7 +22,7 @@ class TestTextGeneratorBasic:
     def test_basic_initialization(self):
         """Test basic generator initialization."""
         tokenizer = CharacterTokenizer("hello world")
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -44,7 +44,7 @@ class TestTextGeneratorBasic:
     
     def test_invalid_tokenizer_type(self):
         """Test initialization with invalid tokenizer type."""
-        model = MicroLM(vocab_size=10, embedding_dim=16, hidden_dim=32, num_layers=1)
+        model = MicroLSTM(vocab_size=10, embedding_dim=16, hidden_dim=32, num_layers=1)
         
         with pytest.raises(ModelConfigurationError):
             TextGenerator(model, "not_a_tokenizer")
@@ -52,7 +52,7 @@ class TestTextGeneratorBasic:
     def test_vocab_size_mismatch(self):
         """Test initialization with mismatched vocabulary sizes."""
         tokenizer = CharacterTokenizer("hello")
-        model = MicroLM(vocab_size=100, embedding_dim=16, hidden_dim=32, num_layers=1)
+        model = MicroLSTM(vocab_size=100, embedding_dim=16, hidden_dim=32, num_layers=1)
         
         with pytest.raises(ModelConfigurationError):
             TextGenerator(model, tokenizer)
@@ -64,7 +64,7 @@ class TestTextGeneration:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world example text")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -130,7 +130,7 @@ class TestParameterValidation:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -180,7 +180,7 @@ class TestPromptProcessing:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,

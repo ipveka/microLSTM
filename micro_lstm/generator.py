@@ -14,7 +14,7 @@ import torch.nn.functional as F
 from typing import Optional, List, Callable, Dict, Any
 import warnings
 
-from .model import MicroLM
+from .model import MicroLSTM
 from .tokenizer import CharacterTokenizer
 from .exceptions import GenerationError, ModelConfigurationError, CudaError
 
@@ -36,12 +36,12 @@ class TextGenerator:
     and various stopping criteria to produce coherent and controllable text output.
     
     Args:
-        model (MicroLM): Trained language model for text generation
+        model (MicroLSTM): Trained language model for text generation
         tokenizer (CharacterTokenizer): Tokenizer for text processing
         device (torch.device, optional): Device to run generation on
         
     Attributes:
-        model (MicroLM): The language model used for generation
+        model (MicroLSTM): The language model used for generation
         tokenizer (CharacterTokenizer): Text tokenizer
         device (torch.device): Generation device
         
@@ -53,7 +53,7 @@ class TextGenerator:
     
     def __init__(
         self,
-        model: MicroLM,
+        model: MicroLSTM,
         tokenizer: CharacterTokenizer,
         device: Optional[torch.device] = None
     ):
@@ -65,7 +65,7 @@ class TextGenerator:
         and ensures the model is in evaluation mode for inference.
         
         Args:
-            model (MicroLM): Trained language model for generation
+            model (MicroLSTM): Trained language model for generation
             tokenizer (CharacterTokenizer): Tokenizer for text processing
             device (torch.device, optional): Device for generation. If None,
                                            uses the same device as the model
@@ -76,9 +76,9 @@ class TextGenerator:
             GenerationError: If model is not properly initialized
         """
         # Validate input types
-        if not isinstance(model, MicroLM):
+        if not isinstance(model, MicroLSTM):
             raise ModelConfigurationError(
-                f"model must be MicroLM instance, got {type(model)}",
+                f"model must be MicroLSTM instance, got {type(model)}",
                 parameter="model",
                 value=type(model)
             )

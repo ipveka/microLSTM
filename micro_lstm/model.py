@@ -1,7 +1,7 @@
 """
 Core LSTM Language Model Implementation
 
-This module contains the MicroLM class, which implements a simple character-level
+This module contains the MicroLSTM class, which implements a simple character-level
 language model using LSTM (Long Short-Term Memory) networks. The model is designed
 for educational purposes with extensive comments explaining each component.
 
@@ -18,7 +18,7 @@ from typing import Tuple, Dict, Any
 from .exceptions import ModelConfigurationError, CudaError
 
 
-class MicroLM(nn.Module):
+class MicroLSTM(nn.Module):
     """
     Simple LSTM-based language model for character-level text generation.
     
@@ -38,7 +38,7 @@ class MicroLM(nn.Module):
         dropout (float): Dropout probability for regularization (default: 0.2)
     
     Example:
-        >>> model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+        >>> model = MicroLSTM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
         >>> input_seq = torch.randint(0, 50, (32, 100))  # batch_size=32, seq_len=100
         >>> output = model(input_seq)  # Shape: (32, 100, 50)
     """
@@ -52,7 +52,7 @@ class MicroLM(nn.Module):
         dropout: float = 0.2
     ):
         """
-        Initialize the MicroLM language model.
+        Initialize the MicroLSTM language model.
         
         Creates an LSTM-based character-level language model with the specified
         architecture parameters. The model consists of an embedding layer,
@@ -69,10 +69,10 @@ class MicroLM(nn.Module):
             ModelConfigurationError: If any parameter is invalid
             
         Example:
-            >>> model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+            >>> model = MicroLSTM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
             >>> print(f"Model has {sum(p.numel() for p in model.parameters()):,} parameters")
         """
-        super(MicroLM, self).__init__()
+        super(MicroLSTM, self).__init__()
         
         # Store model configuration for inspection
         self.vocab_size = vocab_size
@@ -357,7 +357,7 @@ class MicroLM(nn.Module):
     
     def __repr__(self) -> str:
         """String representation of the model."""
-        return (f"MicroLM(vocab_size={self.vocab_size}, "
+        return (f"MicroLSTM(vocab_size={self.vocab_size}, "
                 f"embedding_dim={self.embedding_dim}, "
                 f"hidden_dim={self.hidden_dim}, "
                 f"num_layers={self.num_layers}, "

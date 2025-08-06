@@ -14,7 +14,7 @@ import torch
 import tempfile
 import os
 from micro_lstm.trainer import ModelTrainer
-from micro_lstm.model import MicroLM
+from micro_lstm.model import MicroLSTM
 from micro_lstm.tokenizer import CharacterTokenizer
 from micro_lstm.exceptions import ModelConfigurationError, TrainingError, FileOperationError
 
@@ -25,7 +25,7 @@ class TestModelTrainerBasic:
     def test_basic_initialization(self):
         """Test basic trainer initialization."""
         tokenizer = CharacterTokenizer("hello world")
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -49,7 +49,7 @@ class TestModelTrainerBasic:
     
     def test_invalid_tokenizer_type(self):
         """Test initialization with invalid tokenizer type."""
-        model = MicroLM(vocab_size=10, embedding_dim=16, hidden_dim=32, num_layers=1)
+        model = MicroLSTM(vocab_size=10, embedding_dim=16, hidden_dim=32, num_layers=1)
         
         with pytest.raises(ModelConfigurationError):
             ModelTrainer(model, "not_a_tokenizer")
@@ -57,7 +57,7 @@ class TestModelTrainerBasic:
     def test_vocab_size_mismatch(self):
         """Test initialization with mismatched vocabulary sizes."""
         tokenizer = CharacterTokenizer("hello")
-        model = MicroLM(vocab_size=100, embedding_dim=16, hidden_dim=32, num_layers=1)
+        model = MicroLSTM(vocab_size=100, embedding_dim=16, hidden_dim=32, num_layers=1)
         
         with pytest.raises(ModelConfigurationError):
             ModelTrainer(model, tokenizer)
@@ -69,7 +69,7 @@ class TestDataPreparation:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world example text")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -119,7 +119,7 @@ class TestTrainingLoop:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world example text for training")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -191,7 +191,7 @@ class TestModelSaveLoad:
     def setup_method(self):
         """Set up test components for each test."""
         self.tokenizer = CharacterTokenizer("hello world")
-        self.model = MicroLM(
+        self.model = MicroLSTM(
             vocab_size=self.tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,

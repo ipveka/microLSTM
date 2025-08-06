@@ -30,7 +30,7 @@ from typing import Dict, List, Any, Tuple
 
 # Import Micro LM components
 from micro_lstm import (
-    CharacterTokenizer, MicroLM, ModelTrainer, TextGenerator,
+    CharacterTokenizer, MicroLSTM, ModelTrainer, TextGenerator,
     ModelConfigurationError
 )
 
@@ -446,7 +446,7 @@ def demonstrate_configuration(config_name: str, config: Dict[str, Any], vocab_si
     
     # Create model to get actual parameter count
     try:
-        model = MicroLM(**model_params)
+        model = MicroLSTM(**model_params)
         actual_params = sum(p.numel() for p in model.parameters())
         model_size_mb = (actual_params * 4) / (1024 * 1024)  # Assuming float32
         

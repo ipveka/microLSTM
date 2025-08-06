@@ -30,7 +30,7 @@ import time
 from collections import defaultdict, OrderedDict
 import warnings
 
-from .model import MicroLM
+from .model import MicroLSTM
 from .trainer import ModelTrainer
 from .exceptions import ModelError, ModelConfigurationError
 
@@ -44,32 +44,32 @@ class ModelInspector:
     understand and debug neural language models.
     
     Args:
-        model (MicroLM): The language model to inspect
+        model (MicroLSTM): The language model to inspect
         
     Attributes:
-        model (MicroLM): The model being inspected
+        model (MicroLSTM): The model being inspected
         device (torch.device): Device the model is on
         
     Example:
-        >>> model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+        >>> model = MicroLSTM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
         >>> inspector = ModelInspector(model)
         >>> summary = inspector.get_architecture_summary()
         >>> inspector.print_model_summary()
     """
     
-    def __init__(self, model: MicroLM):
+    def __init__(self, model: MicroLSTM):
         """
         Initialize the model inspector.
         
         Args:
-            model (MicroLM): The language model to inspect
+            model (MicroLSTM): The language model to inspect
             
         Raises:
-            TypeError: If model is not a MicroLM instance
+            TypeError: If model is not a MicroLSTM instance
         """
-        if not isinstance(model, MicroLM):
+        if not isinstance(model, MicroLSTM):
             raise ModelConfigurationError(
-                f"model must be MicroLM instance, got {type(model)}",
+                f"model must be MicroLSTM instance, got {type(model)}",
                 parameter="model",
                 value=type(model)
             )
@@ -1494,12 +1494,12 @@ class TrainingVisualizer:
 
 
 # Utility functions for easy access
-def inspect_model(model: MicroLM, detailed: bool = True) -> Dict[str, Any]:
+def inspect_model(model: MicroLSTM, detailed: bool = True) -> Dict[str, Any]:
     """
     Quick model inspection utility.
     
     Args:
-        model (MicroLM): Model to inspect
+        model (MicroLSTM): Model to inspect
         detailed (bool): Whether to show detailed analysis
         
     Returns:
@@ -1524,12 +1524,12 @@ def visualize_training(training_history: Dict[str, List[float]],
     visualizer.plot_training_progress(save_path=save_path)
 
 
-def analyze_parameters(model: MicroLM, save_path: Optional[str] = None) -> Dict[str, Any]:
+def analyze_parameters(model: MicroLSTM, save_path: Optional[str] = None) -> Dict[str, Any]:
     """
     Quick parameter analysis utility.
     
     Args:
-        model (MicroLM): Model to analyze
+        model (MicroLSTM): Model to analyze
         save_path (str, optional): Path to save visualization
         
     Returns:

@@ -19,7 +19,7 @@ import os
 import json
 from pathlib import Path
 
-from .model import MicroLM
+from .model import MicroLSTM
 from .tokenizer import CharacterTokenizer
 from .data_utils import create_data_loader, validate_sequence_data
 from .exceptions import TrainingError, ModelConfigurationError, FileOperationError, CudaError
@@ -40,12 +40,12 @@ class ModelTrainer:
     progress information to help understand how neural language models are trained.
     
     Args:
-        model (MicroLM): The language model to train
+        model (MicroLSTM): The language model to train
         tokenizer (CharacterTokenizer): Tokenizer for text processing
         device (torch.device, optional): Device to run training on (CPU/GPU)
         
     Attributes:
-        model (MicroLM): The language model being trained
+        model (MicroLSTM): The language model being trained
         tokenizer (CharacterTokenizer): Text tokenizer
         device (torch.device): Training device
         criterion (nn.CrossEntropyLoss): Loss function for training
@@ -53,7 +53,7 @@ class ModelTrainer:
         training_history (Dict): History of training metrics
         
     Example:
-        >>> model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+        >>> model = MicroLSTM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
         >>> tokenizer = CharacterTokenizer("sample text corpus")
         >>> trainer = ModelTrainer(model, tokenizer)
         >>> history = trainer.train(data_loader, epochs=10, learning_rate=0.001)
@@ -61,7 +61,7 @@ class ModelTrainer:
     
     def __init__(
         self,
-        model: MicroLM,
+        model: MicroLSTM,
         tokenizer: CharacterTokenizer,
         device: Optional[torch.device] = None
     ):
@@ -73,7 +73,7 @@ class ModelTrainer:
         availability and uses GPU if available.
         
         Args:
-            model (MicroLM): The language model to train
+            model (MicroLSTM): The language model to train
             tokenizer (CharacterTokenizer): Tokenizer for text processing
             device (torch.device, optional): Device for training. If None, 
                                            automatically selects CUDA if available
@@ -83,9 +83,9 @@ class ModelTrainer:
             ValueError: If model and tokenizer have incompatible vocabulary sizes
         """
         # Validate input types
-        if not isinstance(model, MicroLM):
+        if not isinstance(model, MicroLSTM):
             raise ModelConfigurationError(
-                f"model must be MicroLM instance, got {type(model)}",
+                f"model must be MicroLSTM instance, got {type(model)}",
                 parameter="model",
                 value=type(model)
             )

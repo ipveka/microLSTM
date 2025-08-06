@@ -62,14 +62,14 @@ microlstm analyze --model model.pt
 #### Python API
 
 ```python
-from micro_lstm import DataLoader, CharacterTokenizer, MicroLM, ModelTrainer, TextGenerator
+from micro_lstm import DataLoader, CharacterTokenizer, MicroLSTM, ModelTrainer, TextGenerator
 
 # 1. Load and prepare dataset from Hugging Face
 loader = DataLoader()
 text, tokenizer, info = loader.quick_setup("roneneldan/TinyStories", preprocess=True)
 
 # 2. Create and train model
-model = MicroLM(vocab_size=tokenizer.vocab_size(), embedding_dim=128, hidden_dim=256, num_layers=2)
+model = MicroLSTM(vocab_size=tokenizer.vocab_size(), embedding_dim=128, hidden_dim=256, num_layers=2)
 trainer = ModelTrainer(model, tokenizer)
 data_loader = trainer.prepare_data(text, sequence_length=100, batch_size=32)
 trainer.train(data_loader, epochs=50, learning_rate=0.001)
@@ -89,38 +89,92 @@ The DataLoader supports several popular datasets:
 - **openwebtext**: Web content from Reddit (~8GB)
 - **custom**: Your own text files
 
+### Advanced Training with Configuration
+
+For larger models and production training, use the advanced training script:
+
+```bash
+# Train a large model with custom configuration
+python src/run.py
+```
+
+This script:
+- **Loads configuration** from `config.yaml`
+- **Trains larger models** (up to 8M+ parameters)
+- **Uses GPU acceleration** automatically
+- **Saves models** to `models/` directory
+- **Generates text samples** after training
+- **Provides detailed logging** and progress tracking
+
+#### Configuration Options
+
+Edit `config.yaml` to customize:
+
+```yaml
+# Model Architecture
+model:
+  embedding_dim: 256      # Character embedding size
+  hidden_dim: 512         # LSTM hidden layer size
+  num_layers: 4           # Number of LSTM layers
+  dropout: 0.3            # Dropout for regularization
+
+# Training Settings
+training:
+  epochs: 20              # Number of training epochs
+  batch_size: 32          # Batch size (larger for GPU)
+  sequence_length: 100    # Context window size
+  learning_rate: 0.001    # Learning rate
+
+# Generation Settings
+generation:
+  num_samples: 5          # Number of text samples to generate
+  length: 200             # Length of each sample
+  temperature: 0.8        # Sampling temperature
+```
+
+#### Example Output
+
+The script produces:
+- **Trained model**: `models/big_microlstm_YYYYMMDD_HHMMSS.pth`
+- **Tokenizer**: `models/big_microlstm_YYYYMMDD_HHMMSS_tokenizer.pkl`
+- **Configuration**: `models/big_microlstm_YYYYMMDD_HHMMSS_config.yaml`
+- **Generated samples**: `models/generated_samples_YYYYMMDD_HHMMSS.txt`
+- **Training log**: `training.log`
+
 ## 📁 Project Structure
 
 ```
 micro-lstm/
 ├── micro_lstm/              # Core package (tokenizer, model, trainer, generator)
-├── setup/                 # Configuration guide
-├── examples/              # Usage demos
-└── tests/                 # Test suite
+├── src/                    # Advanced training scripts
+├── models/                 # Saved trained models
+├── setup/                  # Configuration guide
+├── examples/               # Usage demos
+├── tests/                  # Test suite
+├── config.yaml             # Training configuration
+└── requirements.txt        # Dependencies
 ```
 
 ## 🎮 Examples
 
-Run the interactive demos to see MicroLSTM in action:
+Run the interactive examples to see MicroLSTM in action:
 
 ```bash
 # Data preparation and training workflow
-python examples/data_preparation_demo.py
+python examples/data_preparation.py
 
-# Model architecture analysis and inspection
-python examples/model_inspection_demo.py
-
-# Complete training demonstration
-python examples/training_demo.py
+# Complete training with model inspection
+python examples/training.py
 
 # Interactive text generation with different settings
-python examples/text_generation_demo.py
+python examples/text_generation.py
 ```
 
-**Demo Results**: All demos run successfully and demonstrate:
+**Example Results**: All examples run successfully and demonstrate:
 - ✅ Data preprocessing and vocabulary creation
 - ✅ Model architecture analysis with detailed parameter statistics
 - ✅ Training with loss tracking and progress monitoring
+- ✅ Model inspection before and after training
 - ✅ Text generation with temperature control and interactive prompts
 
 ## 🏗️ Architecture: LSTM vs Transformers
@@ -208,10 +262,10 @@ encoded = tokenizer.encode("Hello")  # [7, 4, 11, 11, 14]
 decoded = tokenizer.decode(encoded)  # "Hello"
 ```
 
-### MicroLM
+### MicroLSTM
 LSTM-based language model:
 ```python
-model = MicroLM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
+model = MicroLSTM(vocab_size=50, embedding_dim=128, hidden_dim=256, num_layers=2)
 ```
 
 ### ModelTrainer
@@ -240,7 +294,9 @@ text = generator.generate("Hello", length=50, temperature=0.8)
 
 **Current Status**: All systems operational
 - **Tests**: 68/68 passing ✅
-- **Demos**: All 4 demos working correctly ✅
+- **Examples**: All 3 examples working correctly ✅
+- **Advanced Training**: Large model training script working ✅
+- **GPU Support**: Full CUDA acceleration supported ✅
 - **Coverage**: 37% (core functionality well tested)
 - **Documentation**: Complete with examples ✅
 

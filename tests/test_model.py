@@ -1,7 +1,7 @@
 """
-Simplified unit tests for the MicroLM model implementation.
+Simplified unit tests for the MicroLSTM model implementation.
 
-This module contains focused tests for the MicroLM class, covering:
+This module contains focused tests for the MicroLSTM class, covering:
 - Basic model initialization and functionality
 - Forward pass with correct shapes
 - Error handling for invalid inputs
@@ -11,16 +11,16 @@ This module contains focused tests for the MicroLM class, covering:
 import pytest
 import torch
 import torch.nn as nn
-from micro_lstm.model import MicroLM
+from micro_lstm.model import MicroLSTM
 from micro_lstm.exceptions import ModelConfigurationError
 
 
-class TestMicroLMBasic:
+class TestMicroLSTMBasic:
     """Test basic model functionality."""
     
     def test_basic_initialization(self):
         """Test basic model initialization with valid parameters."""
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=50,
             embedding_dim=128,
             hidden_dim=256,
@@ -40,7 +40,7 @@ class TestMicroLMBasic:
     
     def test_forward_pass_shapes(self):
         """Test forward pass produces correct output shapes."""
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=30,
             embedding_dim=64,
             hidden_dim=128,
@@ -60,7 +60,7 @@ class TestMicroLMBasic:
     
     def test_hidden_state_initialization(self):
         """Test hidden state initialization."""
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=20,
             embedding_dim=32,
             hidden_dim=64,
@@ -78,47 +78,47 @@ class TestMicroLMBasic:
         assert torch.all(c == 0)
 
 
-class TestMicroLMValidation:
+class TestMicroLSTMValidation:
     """Test input validation and error handling."""
     
     def test_invalid_vocab_size(self):
         """Test that invalid vocab_size raises ModelConfigurationError."""
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=0, embedding_dim=64, hidden_dim=128, num_layers=1)
+            MicroLSTM(vocab_size=0, embedding_dim=64, hidden_dim=128, num_layers=1)
         
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=-5, embedding_dim=64, hidden_dim=128, num_layers=1)
+            MicroLSTM(vocab_size=-5, embedding_dim=64, hidden_dim=128, num_layers=1)
     
     def test_invalid_embedding_dim(self):
         """Test that invalid embedding_dim raises ModelConfigurationError."""
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=50, embedding_dim=0, hidden_dim=128, num_layers=1)
+            MicroLSTM(vocab_size=50, embedding_dim=0, hidden_dim=128, num_layers=1)
     
     def test_invalid_hidden_dim(self):
         """Test that invalid hidden_dim raises ModelConfigurationError."""
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=50, embedding_dim=64, hidden_dim=0, num_layers=1)
+            MicroLSTM(vocab_size=50, embedding_dim=64, hidden_dim=0, num_layers=1)
     
     def test_invalid_num_layers(self):
         """Test that invalid num_layers raises ModelConfigurationError."""
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=0)
+            MicroLSTM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=0)
     
     def test_invalid_dropout(self):
         """Test that invalid dropout raises ModelConfigurationError."""
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=1, dropout=-0.1)
+            MicroLSTM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=1, dropout=-0.1)
         
         with pytest.raises(ModelConfigurationError):
-            MicroLM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=1, dropout=1.5)
+            MicroLSTM(vocab_size=50, embedding_dim=64, hidden_dim=128, num_layers=1, dropout=1.5)
 
 
-class TestMicroLMInfo:
+class TestMicroLSTMInfo:
     """Test model information methods."""
     
     def test_get_model_info(self):
         """Test model info structure."""
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=25,
             embedding_dim=64,
             hidden_dim=128,
@@ -139,7 +139,7 @@ class TestMicroLMInfo:
     
     def test_model_repr(self):
         """Test model string representation."""
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=30,
             embedding_dim=64,
             hidden_dim=128,
@@ -147,6 +147,6 @@ class TestMicroLMInfo:
         )
         
         repr_str = repr(model)
-        assert "MicroLM" in repr_str
+        assert "MicroLSTM" in repr_str
         assert "vocab_size=30" in repr_str
         assert "embedding_dim=64" in repr_str 

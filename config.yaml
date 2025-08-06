@@ -1,0 +1,44 @@
+# MicroLSTM Big Model Configuration
+# Configuration for training a larger model with TinyStories dataset
+
+# Model Architecture
+model:
+  embedding_dim: 256      # Increased from 64
+  hidden_dim: 512         # Increased from 128
+  num_layers: 4           # Increased from 2
+  dropout: 0.3            # Slightly increased for regularization
+
+# Training Configuration
+training:
+  epochs: 20              # More epochs for better training
+  batch_size: 32          # Larger batch size for GPU efficiency
+  sequence_length: 100    # Longer sequences for better context
+  learning_rate: 0.001    # Standard learning rate
+  gradient_clipping: 1.0  # Prevent gradient explosion
+
+# Dataset Configuration
+dataset:
+  name: "roneneldan/TinyStories"
+  max_chars: 2000000      # Use more data (increased from 1M)
+  preprocess: true        # Apply text preprocessing
+
+# Generation Configuration
+generation:
+  num_samples: 5          # Number of text samples to generate
+  length: 200             # Length of each generated text
+  temperature: 0.8        # Sampling temperature
+  top_k: 50               # Top-k sampling
+  top_p: 0.9              # Top-p (nucleus) sampling
+
+# Output Configuration
+output:
+  model_name: "big_microlstm"
+  save_dir: "models"
+  save_format: "pth"      # PyTorch format
+  log_interval: 100       # Log every N batches
+  save_interval: 5        # Save model every N epochs
+
+# Hardware Configuration
+hardware:
+  use_gpu: true           # Use GPU acceleration
+  device: "auto"          # Auto-detect best device 

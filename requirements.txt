@@ -1,6 +1,7 @@
 # Core dependencies for MicroLSTM
 torch>=2.0.0
 numpy>=1.21.0
+PyYAML>=6.0        # For configuration file parsing
 
 # Data loading dependencies
 datasets>=2.0.0    # For downloading datasets from Hugging Face

@@ -240,7 +240,7 @@ class ModelConfigurationError(ModelError):
     
     Example:
         >>> try:
-        ...     MicroLM(vocab_size=-10, embedding_dim=128)  # Invalid vocab_size
+        ...     MicroLSTM(vocab_size=-10, embedding_dim=128)  # Invalid vocab_size
         ... except ModelConfigurationError as e:
         ...     print(f"Model configuration error: {e}")
         ...     print(f"Invalid parameter: {e.context.get('parameter', 'unknown')}")

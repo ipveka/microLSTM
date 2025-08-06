@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 
 from micro_lstm.tokenizer import CharacterTokenizer
-from micro_lstm.model import MicroLM
+from micro_lstm.model import MicroLSTM
 from micro_lstm.trainer import ModelTrainer
 from micro_lstm.generator import TextGenerator
 
@@ -49,7 +49,7 @@ class TestCompleteTrainingPipeline:
         assert decoded == sample_text
         
         # Step 2: Create model with appropriate architecture
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=vocab_size,
             embedding_dim=64,
             hidden_dim=128,
@@ -110,7 +110,7 @@ class TestModelPersistence:
         # Setup components
         training_text = "Hello world example text for training the model."
         tokenizer = CharacterTokenizer(training_text)
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=tokenizer.vocab_size(),
             embedding_dim=32,
             hidden_dim=64,
@@ -215,7 +215,7 @@ class TestDifferentModelConfigurations:
         tokenizer = CharacterTokenizer(training_text)
         
         # Create model with given configuration
-        model = MicroLM(
+        model = MicroLSTM(
             vocab_size=tokenizer.vocab_size(),
             embedding_dim=config["embedding_dim"],
             hidden_dim=config["hidden_dim"],
